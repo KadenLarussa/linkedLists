@@ -28,6 +28,7 @@ public:
         while (current->next != nullptr) {
             current = current->next;
         }
+        return current;
     }
 
     void buildSimple (int n) {
@@ -60,6 +61,11 @@ public:
             curr = curr->next;
         }
         return prev;
+    }
+
+    void insertAfter(int n) { //TODO fix this function
+        node *newNode = makeNode(n);
+
     }
 
     void insertSorted(int n) {
