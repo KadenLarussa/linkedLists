@@ -2,31 +2,31 @@
 
 class node {
   public: int data;
-  node * next;
+  node *next;
 };
 
 class linkedList {
-  public: node * front;
+  public: node *front;
   void init() {
     front = nullptr;
   }
 
-  node * makeNode(int n) {
-    node * t = new node;
+  node *makeNode(int n) {
+    node *t = new node;
     t -> data = n;
     t -> next = nullptr;
     return t;
   }
-  node * findTail() {
+  node *findTail() {
     if (front == nullptr) return nullptr;
-    node * current = front;
+    node *current = front;
     while (current -> next != nullptr) {
       current = current -> next;
     }
   }
 
   void buildSimple(int n) {
-    node * tail = nullptr;
+    node *tail = nullptr;
     for (int i = 0; i < n; i++) {
       if (i == 0) {
         init();
@@ -40,7 +40,7 @@ class linkedList {
   }
 
   void showList() {
-    node * current;
+    node *current;
     current = front;
     while (current != nullptr) {
       std::cout << current -> data << " ";
@@ -48,9 +48,9 @@ class linkedList {
     }
   }
 
-  node * findSpot(int n) {
-    node * curr = front;
-    node * prev = nullptr;
+  node *findSpot(int n) {
+    node *curr = front;
+    node *prev = nullptr;
     while (curr != nullptr && curr -> data < n) {
       prev = curr;
       curr = curr -> next;
@@ -59,24 +59,24 @@ class linkedList {
   }
 
   void insertSorted(int n) {
-    node * newNode = makeNode(n);
+    node *newNode = makeNode(n);
     if (front == nullptr || n < front -> data) { // If its the beginning
       newNode -> next = front;
       front = newNode;
     } else {
-      node * prev = findSpot(n);
+      node *prev = findSpot(n);
       newNode -> next = prev -> next;
       prev -> next = newNode;
     }
   }
 
   void insertAfter(int afterValue, int newValue) {
-    node * spot = front;
+    node *spot = front;
     while (spot != nullptr && spot -> data != afterValue) {
       spot = spot -> next;
     }
     if (spot != nullptr) {
-      node * newNode = makeNode(newValue);
+      node *newNode = makeNode(newValue);
       newNode -> next = spot -> next;
       spot -> next = newNode;
     }
@@ -85,14 +85,14 @@ class linkedList {
   void deleteNode(int n) {
     if (front == nullptr) return;
     if (front -> data == n) {
-      node * temp = front;
+      node *temp = front;
       front = front -> next;
       delete temp; // Free the memory because my compiler told me to
       return;
     }
 
-    node * prev = nullptr;
-    node * curr = front;
+    node *prev = nullptr;
+    node *curr = front;
     while (curr != nullptr && curr -> data != n) {
       prev = curr;
       curr = curr -> next;
